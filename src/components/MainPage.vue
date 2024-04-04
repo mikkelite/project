@@ -6,7 +6,7 @@
 <input type="text" id="name" v-model="filterName">  
     <ul v-if="products.length">
       <li v-for="product in filterProducts" :key="product.id" >
-        {{ product.nameString }} - {{ product.price }} -{{ product.descriptionString }}
+        {{ product.nameString }} <br /> {{ product.price }} <br /> {{ product.descriptionString }}
       </li>
     </ul>
 </div>
