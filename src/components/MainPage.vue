@@ -1,12 +1,12 @@
 <template>
 <div>
-    <p>Enter description of product</p>
-<input type="text" id="description"> 
+<p>Enter description of product</p>
+<input type="text" id="description" v-model="filterDescription"> 
 <p>Enter name of product</p>
-<input type="text" id="name">  
+<input type="text" id="name" v-model="filterName">  
     <ul v-if="products.length">
-      <li v-for="product in products" :key="product.id">
-        {{ product.nameString }} - {{ product.price }}
+      <li v-for="product in filterProducts" :key="product.id" >
+        {{ product.nameString }} <br /> {{ product.price }} <br /> {{ product.descriptionString }}
       </li>
     </ul>
 </div>
@@ -21,8 +21,10 @@ export default{
 
     data(){
         return{
-        products:[]
-        }
+        products:[],
+        filterDescription:'',
+        filterName:''
+        }    
     },
     methods:{
       async fetchProducts() {
@@ -33,6 +35,27 @@ export default{
       } catch (error) {
         console.error('Error fetching products:', error); 
       }
+    },
+ },
+    computed:{
+      filterProducts(){
+      if(this.filterDescription === '' && this.filterName ===''){
+        return this.products
+      }
+      else
+      return this.products.filter((product) => {
+        const lowerCaseDescription = product.descriptionString.toLowerCase();
+        const lowerCaseName = product.nameString.toLowerCase();
+        let descriptionMatch=''
+        let nameMatch=''
+        if(lowerCaseDescription.includes(this.filterDescription.toLowerCase())){
+          descriptionMatch = this.filterDescription 
+        }
+        if(lowerCaseName.includes(this.filterName.toLowerCase())){
+          nameMatch = this.filterName
+        }
+        return descriptionMatch || nameMatch;
+      });
     }
     },
     mounted(){
@@ -54,9 +77,7 @@ p{
 input{
     display: inline-block;
     margin: auto;
-    box-sizing: border-box;
- 
-   
+    box-sizing: border-box; 
 }
 ul {
   list-style: none;
