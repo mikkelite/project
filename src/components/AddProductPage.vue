@@ -1,22 +1,27 @@
 <template>
     <form>
         <label>name of product</label>
-        <input v-model="newProduct.nameString">
+        <input v-model="newProduct.nameString" required>
+        <br />
         <label>price of product</label>
-        <input v-model="newProduct.price">
+        <input v-model="newProduct.price" required>
+        <br />
         <label>number in stock</label>
-        <input v-model="newProduct.NumberInStock">
+        <input v-model="newProduct.NumberInStock" required>
+        <br />
         <label>description of product</label>
-        <input v-model="newProduct.descriptionString">
+        <input v-model="newProduct.descriptionString" required>
+        <br />
         <label>specifications of product</label> 
-        <input v-model="newProduct.specificationString">
-        <button @click="PostProduct" type="submit"></button>
+        <input v-model="newProduct.specificationString" required>
+        <br />
+        <button @click="PostProduct" type="submit">Submit Product</button>
     </form>
 </template>
 <script>
 import ProductService from '@/services/ProductService';
 export default {
-name:AddProductPage,
+name:"AddProductPage",
 data(){
     return{
     newProduct:{
@@ -37,3 +42,47 @@ methods:{
 }
 }
 </script>
+<style>
+body {
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+}
+p{
+    display: inline-flex;
+    padding:10px
+}
+input{
+    display: inline-block;
+    margin: auto;
+    box-sizing: border-box;
+    margin: 10px;
+ 
+   
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; 
+}
+
+li {
+  display: flex; 
+  margin: 10px; 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+}
+
+li a {
+  text-decoration: none;
+  color: #000;
+}
+
+li a:hover {
+  color: #333; 
+}
+
+
+li:hover {
+  background-color: #eee; 
+}</style>
