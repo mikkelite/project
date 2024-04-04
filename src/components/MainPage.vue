@@ -9,6 +9,7 @@
         {{ product.nameString }} <br /> {{ product.price }} <br /> {{ product.descriptionString }}
       </li>
     </ul>
+    <a href="http://localhost:8081/AddProductPage" >AddProductPage</a>
 </div>
 </template>
 
