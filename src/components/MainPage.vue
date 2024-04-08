@@ -11,15 +11,14 @@
       <li v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
           <div>{{ product.nameString }} &nbsp;&nbsp;</div>
-          <div>
-            <a :href="'http://localhost:8081/getProductReview/' + product.id">
-              >Reviews({{ product.reviews.length }})</a
-            >
+          <div id="Reviews">
+            <button @click="renderReviews(product.id)">Reviews: {{ product.reviews.length }}</button>
           </div>
         </div>
         <br />
         {{ product.price }} <br />
         {{ product.descriptionString }}
+        <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
         <button @click="deleteProduct(product)">Delete</button>
       </li>
@@ -30,15 +29,19 @@
 
 <script>
 import ProductService from '@/services/ProductService';
+import ProductReview from './ProductReview.vue';
 
 export default {
   name: 'ProductDisplayed',
+  components:{ProductReview},
 
   data() {
     return {
       products: [],
       filterDescription: '',
       filterName: '',
+      showReviews:false,
+      productId:0
     };
   },
   methods: {
@@ -51,6 +54,7 @@ export default {
         console.error('Error fetching products:', error);
       }
     },
+    //
     async deleteProduct(product) {
       const confirmation = confirm(
         'Are you sure you want to delete this product?'
@@ -66,6 +70,11 @@ export default {
         }
       }
     },
+    //
+    renderReviews(productId){
+      this.showReviews=true
+      this.productId=productId
+    }
   },
   computed: {
     filterProducts() {
@@ -99,6 +108,13 @@ export default {
 body {
   font-family: Arial, sans-serif;
   margin: 0;
+}
+p .reviews{
+  display: block;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #1b70c5 !important;
+  border-radius: 5px;
 }
 p {
   display: inline-flex;
