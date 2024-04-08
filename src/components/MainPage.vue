@@ -7,6 +7,8 @@
     <ul v-if="products.length">
       <li v-for="product in filterProducts" :key="product.id" >
         {{ product.nameString }} <br /> {{ product.price }} <br /> {{ product.descriptionString }}
+        
+        <button @click="deleteProduct(product)">Delete</button>
       </li>
     </ul>
     <a href="http://localhost:8081/AddProductPage" >AddProductPage</a>
@@ -37,6 +39,21 @@ export default{
         console.error('Error fetching products:', error); 
       }
     },
+    async deleteProduct(product){
+      const confirmation = confirm("Are you sure you want to delete this product?");
+      if(confirmation){
+        const response=await ProductService.deleteProduct(product)
+        console.log(response.status)
+        if(response.status==200){
+          alert("Product deleted successfully!");
+          location.reload()
+        }
+        else {
+          alert("Error deleting product!");
+          
+        }
+      }
+    }
  },
     computed:{
       filterProducts(){
@@ -106,4 +123,9 @@ li a:hover {
 
 li:hover {
   background-color: #eee; 
-}</style>
+}
+button {
+margin: 10px;
+}
+</style>
+
