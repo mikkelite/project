@@ -10,7 +10,7 @@
     <ul v-if="products.length">
       <li v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
-          <div>{{ product.nameString }} &nbsp;&nbsp;</div>
+          <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div>
           <div id="Reviews">
             <button @click="renderReviews(product.id)">Reviews: {{ product.reviews.length }}</button>
           </div>
@@ -175,7 +175,13 @@ button {
   display: block; 
 }
 
-
+#NameProduct{
+  background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));
+  border:3px #73a2d1;
+  padding: 3px;
+  border-style:ridge;
+  
+}
 a{
   margin-bottom: 5px;
   margin-left: 10px;
