@@ -139,14 +139,15 @@ li {
   display: block ;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #1b70c5;
+  border: 1px solid ;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143))
 }
 
 li a {
   text-decoration: none;
-  color: #0d22dd ;
+  
 }
 
 li a:hover {
@@ -168,17 +169,13 @@ button {
   padding: 8px 8px 2px 95px;
   margin-top: 2%;
   margin-left:10px ;
-  
 }
-#Main{
-  
+#Main{ 
   border:10px inset rgb(62, 55, 104);
-  display: block;
-  
+  display: block; 
 }
-#li::after{
-  background-color: linear-gradient(to bottom, rgb(126, 38, 38));
-}
+
+
 a{
   margin-bottom: 5px;
   margin-left: 10px;
