@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Main">
     <div class="filter-area">
       <p>Enter description of product</p>
       <input type="text" id="description" v-model="filterDescription" />
@@ -21,7 +21,7 @@
        rating: {{ product.rating }} /5
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
-        <button v-if="localStorage.getItem('role')==='Admin'" @click="deleteProduct(product)">Delete</button>
+        <button  @click="deleteProduct(product)">Delete</button>
       </li>
     </ul>
     <a href="http://localhost:8081/AddProductPage">AddProductPage</a>
@@ -115,7 +115,7 @@ p .reviews{
   display: block;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #1b70c5 !important;
+  border: 1px solid #1b70c5;
   border-radius: 5px;
 }
 p {
@@ -131,21 +131,22 @@ ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding: 13px 12px 10px 90px !important;
+  padding: 13px 12px 10px 90px ;
   margin: 0;
 }
 
 li {
-  display: block !important;
+  display: block ;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #1b70c5 !important;
+  border: 1px solid #1b70c5;
   border-radius: 5px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 li a {
   text-decoration: none;
-  color: #0d22dd !important;
+  color: #0d22dd ;
 }
 
 li a:hover {
@@ -166,5 +167,20 @@ button {
   top: 1%;
   padding: 8px 8px 2px 95px;
   margin-top: 2%;
+  margin-left:10px ;
+  
+}
+#Main{
+  
+  border:10px inset rgb(62, 55, 104);
+  display: block;
+  
+}
+#li::after{
+  background-color: linear-gradient(to bottom, rgb(126, 38, 38));
+}
+a{
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 </style>
