@@ -1,19 +1,19 @@
 <template>
     <form>
         <label>name of product</label>
-        <input v-model="newProduct.nameString" required>
+        <input type="text" v-model="newProduct.nameString" required>
         <br />
         <label>price of product</label>
-        <input v-model="newProduct.price" required>
+        <input type="number" v-model="newProduct.price" required>
         <br />
         <label>number in stock</label>
-        <input v-model="newProduct.NumberInStock" required>
+        <input type="number" v-model="newProduct.NumberInStock" required>
         <br />
         <label>description of product</label>
-        <input v-model="newProduct.descriptionString" required>
+        <input type="text" v-model="newProduct.descriptionString" required>
         <br />
         <label>specifications of product</label> 
-        <input v-model="newProduct.specificationString" required>
+        <input type="text" v-model="newProduct.specificationString" required>
         <br />
         <button @click="PostProduct" type="submit">Submit Product</button>
     </form>

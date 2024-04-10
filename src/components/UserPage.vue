@@ -21,7 +21,7 @@ export default{
             User:{
                 fName:"",
                 lName:"", 
-                role:"", 
+                role:"User", 
                 password:""
             }
         }
