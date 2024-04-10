@@ -5,7 +5,7 @@
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
-      <a href="http://localhost:8081/AccountCreation">Account Creation Page</a>
+      <a href="http://localhost:8081/AccountCreation">Sign up</a>
     </div>
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
@@ -80,9 +80,12 @@ export default {
   },
   computed: {
     filterProducts() {
+      //if both search boxes are empty
       if (this.filterDescription === '' && this.filterName === '') {
         return this.products;
-      } else
+      }
+      //otherwise searches based on the input boxes
+      else
         return this.products.filter((product) => {
           const lowerCaseDescription = product.descriptionString.toLowerCase();
           const lowerCaseName = product.nameString.toLowerCase();

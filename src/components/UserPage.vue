@@ -12,6 +12,7 @@
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" v-model="userRegisterRequest.email" required>
+            <p v-if="!validateEmail(email)">Please enter a valid email address.</p>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -40,23 +41,28 @@ export default{
             }
         }
     },
-
     methods:{
-      createUser(event){
-            event.preventDefault();
-            RegisterService.createUser(this.userRegisterRequest)
-            .then(response => {
-                let user = response.data;
-                console.log(user);
-                this.message = user;
-                this.$router.push({name: "UserLogin"})
-            })
-            .catch(error => {
-                console.log(error.response.data);
-            })
+    validateEmail(email) {
+        const re = /^[\w.+_-]+@[a-zA-Z-0-9.]+\.[a-zA-Z]{2,}$/;
+        return re.test(email);
+    },
+    createUser(event){
+            if (this.validateEmail(this.email)){  
+                event.preventDefault();
+                RegisterService.createUser(this.userRegisterRequest)
+                .then(response => {
+                    let user = response.data;
+                    console.log(user);
+                    this.message = user;
+                    this.$router.push({name: "UserLogin"})
+                })
+                .catch(error => {
+                    console.log(error.response.data);
+                })
         }
-    }
-
+       
+    }, 
+  },
 }
 </script>
 <style>
