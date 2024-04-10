@@ -2,9 +2,9 @@
 <template>
   <div>
     <h1>Product Reviews</h1>
-    <h2></h2> 
+
       <ul v-for="review in reviews">
-        <li class="reviews">{{ review }}</li>
+        <p style="font-size: larger;">- -</p><li class="reviews">{{ review }}</li>
       </ul>
   </div>
 </template>
@@ -55,7 +55,6 @@ ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding: 13px 12px 10px 50px !important;
   margin: 0;
 }
 
@@ -89,4 +88,7 @@ button {
   top: 1%;
   padding: 8px 8px 2px 95px;
   margin-top: 2%;
+}h1{
+  margin-top: 0px;
 }</style>
+

@@ -8,7 +8,7 @@
       <a href="http://localhost:8081/AccountCreation">Account Creation Page</a>
     </div>
     <ul v-if="products.length">
-      <li v-for="product in filterProducts" :key="product.id">
+      <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div>
           <div id="Reviews">
@@ -131,11 +131,11 @@ ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding: 13px 12px 10px 90px ;
+  padding: 13px 12px 10px 50px ;
   margin: 0;
 }
 
-li {
+.products {
   display: block ;
   margin: 10px;
   padding: 10px;
@@ -173,6 +173,7 @@ button {
 #Main{ 
   border:10px inset rgb(62, 55, 104);
   display: block; 
+  
 }
 
 #NameProduct{
