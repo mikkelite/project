@@ -21,7 +21,7 @@
        rating: {{ product.rating }} /5
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
-        <button @click="deleteProduct(product)">Delete</button>
+        <button v-if="localStorage.getItem('role')==='Admin'" @click="deleteProduct(product)">Delete</button>
       </li>
     </ul>
     <a href="http://localhost:8081/AddProductPage">AddProductPage</a>
