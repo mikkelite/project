@@ -1,15 +1,22 @@
 <template>
     <h1>Account Creation</h1>  
         <form style="display: grid">     
-       
-            <label>Enter First Name</label>
-            <input type="text" required>
-       
-            <label>Enter Last Name</label>
-            <input type="text" required>    
-     
-            <label>Enter Email Address</label> 
-            <input type="email"  required>
+          <div>
+              <label for="fName">Enter First Name</label>
+              <input type="text" id="fName" required>
+            </div>
+            <div>
+              <label for="lName">Enter Last Name</label>
+              <input type="text" id="lName" required>  
+            </div>
+            <div>
+              <label for="email">Enter Email Address</label> 
+              <input type="email" id="email" required/>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password"/>
+            </div>
       
             <button  @click="CreateUser" type="submit">Create User</button>
         </form>
