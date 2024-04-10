@@ -5,8 +5,8 @@
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
+      <a href="http://localhost:8081/AccountCreation">Account Creation Page</a>
     </div>
-
     <ul v-if="products.length">
       <li v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
@@ -31,6 +31,7 @@
 <script>
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
+
 
 export default {
   name: 'ProductDisplayed',
