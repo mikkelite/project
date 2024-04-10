@@ -16,8 +16,9 @@
           </div>
         </div>
         <br />
-        {{ product.price }} <br />
-        {{ product.descriptionString }}
+       Price: {{ product.price }} <br />
+        {{ product.descriptionString }} <br />
+       rating: {{ product.rating }} /5
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
         <button @click="deleteProduct(product)">Delete</button>
