@@ -3,6 +3,7 @@ import MainPage from "@/components/MainPage.vue";
 import AddProductPage from "@/components/AddProductPage.vue";
 import ProductReview from "@/components/ProductReview.vue";
 import UserPage from "@/components/UserPage.vue";
+import UserLogin from '../components/UserLogin.vue';
 
 const routes = [
   {
@@ -25,11 +26,16 @@ const routes = [
     name: "AccountCreation",
     component: UserPage,
   },
+  {
+    path: "/login",
+    name: "UserLogin",
+    component: UserLogin
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
 export default router;

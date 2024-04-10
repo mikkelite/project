@@ -1,4 +1,4 @@
-import http from '../../HttpRequests.js';
+import http from '../HttpRequests';
 
 class ProductService {
   load() {
