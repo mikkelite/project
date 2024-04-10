@@ -1,95 +1,116 @@
 <template>
-    <h1>Account Creation</h1>  
-        <form style="display: grid">     
-          <div>
-              <label for="fName">Enter First Name</label>
-              <input type="text" id="fName" required>
-            </div>
-            <div>
-              <label for="lName">Enter Last Name</label>
-              <input type="text" id="lName" required>  
-            </div>
-            <div>
-              <label for="email">Enter Email Address</label> 
-              <input type="email" id="email" required/>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password"/>
-            </div>
-      
-            <button  @click="CreateUser" type="submit">Create User</button>
-        </form>
+<body>
+    <form class="signup-form" action="/signup" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" v-model="userRegisterRequest.fName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" v-model="userRegisterRequest.lName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" v-model="userRegisterRequest.email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" v-model="userRegisterRequest.password" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create Account" @click="createUser">
+        </div>
+    </form>
+</body>
 </template>
+
 <script>
+import RegisterService from '@/services/RegisterService';
+
 export default{
+    name: "userRegister",
     data(){
         return{
-            User:{
+            userRegisterRequest:{
                 fName:"",
-                lName:"", 
-                role:"User", 
-                password:""
+                lName:"",
+                email:"",
+                password:"",
+                role:"User"
             }
         }
     },
+
     methods:{
-        CreateUser(){
-
+      createUser(event){
+            event.preventDefault();
+            RegisterService.createUser(this.userRegisterRequest)
+            .then(response => {
+                let user = response.data;
+                console.log(user);
+                this.message = user;
+                this.$router.push({name: "UserLogin"})
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            })
         }
-
     }
 
 }
 </script>
 <style>
-body {
-  font-family: Arial, sans-serif; 
-  margin: 0; 
-}
-label{
-    margin-left: 10px;
-}
-p{
-    display: inline-flex;
-    padding:10px
-}
-button{
-    width: fit-content
-}
-input{
-    display: inline-block;
-    margin: auto;
-    box-sizing: border-box;
-    margin: 10px;
-    width: fit-content
 
-}
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0; 
-}
+body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-li {
-  display: flex; 
-  margin: 10px; 
-  padding: 10px; 
-  border: 1px solid #ddd; 
-  border-radius: 5px; 
-}
+        .signup-form {
+            width: 100%;
+            max-width: 400px;
+            margin: auto; 
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-li a {
-  text-decoration: none;
-  color: #000;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-li a:hover {
-  color: #333; 
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+        }
 
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-li:hover {
-  background-color: #eee; 
-}</style>
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+</style>
 
