@@ -1,22 +1,25 @@
 <template>
+  <div id="AddProduct">
     <form>
-        <label>name of product</label>
+      <h2>Enter Product Details:</h2>
+        <label>Name of the product</label>
         <input type="text" v-model="newProduct.nameString" required>
         <br />
-        <label>price of product</label>
+        <label>Price of the product</label>
         <input type="number" v-model="newProduct.price" required>
         <br />
-        <label>number in stock</label>
+        <label>Stock Available</label>
         <input type="number" v-model="newProduct.NumberInStock" required>
         <br />
-        <label>description of product</label>
+        <label>Description of the product</label>
         <input type="text" v-model="newProduct.descriptionString" required>
         <br />
-        <label>specifications of product</label> 
+        <label>Specifications of the product</label> 
         <input type="text" v-model="newProduct.specificationString" required>
         <br />
-        <button @click="PostProduct" type="submit">Submit Product</button>
+        <button @click="PostProduct" type="submit" class="button">Submit Product</button>
     </form>
+  </div>
 </template>
 <script>
 import ProductService from '@/services/ProductService';
@@ -47,22 +50,50 @@ body {
   font-family: Arial, sans-serif; 
   margin: 0; 
 }
+#AddProduct{ 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  padding: 10%;
+  display: block; 
+  background-color: white;
+}
+h2 {
+  text-align: center;
+
+}
 p{
     display: inline-flex;
     padding:10px
 }
+form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  padding: 10%;
+  display: block; 
+  background-color: white;
+}
+
+label {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
 input{
     display: inline-block;
     margin: auto;
     box-sizing: border-box;
     margin: 10px;
- 
-   
+    text-align: center;
 }
+
 ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  padding: 0;
-  margin: 0; 
+  padding: 13px 12px 10px 50px ;
+  margin: 0;
 }
 
 li {
@@ -85,4 +116,21 @@ li a:hover {
 
 li:hover {
   background-color: #eee; 
-}</style>
+}
+.button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4d80b4;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  background-color: #1b70c5;
+}
+</style>

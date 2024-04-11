@@ -85,9 +85,16 @@ body {
         }
 
         .form-control input[type="submit"] {
-            background-color: #0056b3;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4d80b4;
             color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .form-control input[type="submit"]:hover {

@@ -5,14 +5,16 @@
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
-      <a href="http://localhost:8081/AccountCreation">Sign up</a>
+      <br />
+      <a href="http://localhost:8081/AccountCreation" class="signup-link">Sign up</a>
+      <a href="http://localhost:8081/AddProductPage" class="add-product-link">Add a Product?</a>
     </div>
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div>
           <div id="Reviews">
-            <button @click="renderReviews(product.id)">Reviews: {{ product.reviews.length }}</button>
+            <button @click="renderReviews(product.id)" class="reviews-button">Reviews: {{ product.reviews.length }}</button>
           </div>
         </div>
         <br />
@@ -21,10 +23,9 @@
        rating: {{ product.rating }} /5
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
-        <button  @click="deleteProduct(product)">Delete</button>
+        <button  @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
-    <a href="http://localhost:8081/AddProductPage">AddProductPage</a>
   </div>
 </template>
 
@@ -109,6 +110,7 @@ export default {
   },
 };
 </script>
+
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -167,16 +169,17 @@ button {
   display: flex;
 }
 .filter-area {
-  width: 66%;
-  top: 1%;
-  padding: 8px 8px 2px 95px;
-  margin-top: 2%;
-  margin-left:10px ;
+  width: 50%;
+  margin: auto;
+  padding: 8px 8px 2px 8px;
+  
 }
 #Main{ 
-  border:10px inset rgb(62, 55, 104);
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  padding: 5%;
   display: block; 
-  
+  background-color: white;
 }
 
 #NameProduct{
@@ -184,10 +187,29 @@ button {
   border:3px #73a2d1;
   padding: 3px;
   border-style:ridge;
-  
 }
-a{
+
+a {
   margin-bottom: 5px;
   margin-left: 10px;
+}
+
+.add-product-link, .delete-button, .reviews-button, .signup-link {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4d80b4;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-link:hover, .delete-button:hover, .reviews-button:hover, .signup-link:hover {
+
+  background-color: #4d80b4;
+
 }
 </style>

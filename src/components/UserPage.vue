@@ -52,8 +52,9 @@ export default{
         return isNaN(field) && typeof field !== 'boolean';
     },
     createUser(event){
+            
             if (this.validateEmail(this.userRegisterRequest.email) && this.CheckIfNumerical(this.userRegisterRequest.lName) && this.CheckIfNumerical(this.userRegisterRequest.fName)){  
-                event.preventDefault();         
+                event.preventDefault();  
                 RegisterService.createUser(this.userRegisterRequest)
                 .then(response => {
                     let user = response.data;
@@ -99,6 +100,7 @@ body, html {
         .form-group label {
             display: block;
             margin-bottom: 8px;
+            text-align: start;
         }
 
         .form-group input {
@@ -110,14 +112,20 @@ body, html {
         }
 
         .form-group input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+           
+            
             font-size: 16px;
-            padding: 10px 0;
             width: 100%;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4d80b4;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .form-group input[type="submit"]:hover {
