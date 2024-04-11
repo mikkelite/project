@@ -36,8 +36,9 @@ export default{
             .then(response => {
                 let user = response.data;
                 console.log(user);
+                localStorage.setItem('uid', user.id);
                 this.message = user;
-                this.$router.push({name: "AddProductPage"})
+                this.$router.push({name: "userProfile"})
             })
             .catch(error => {
                 console.log(error.response.data);
@@ -54,43 +55,43 @@ export default{
 
 <style>
 body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
 
-        .login-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.login-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .form-control {
-            margin-bottom: 20px;
-        }
+.form-control {
+    margin-bottom: 20px;
+}
 
-        .form-control label {
-            display: block;
-            margin-bottom: 5px;
-        }
+.form-control label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        .form-control input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+.form-control input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
 
-        .form-control input[type="submit"] {
-            background-color: #0056b3;
-            color: white;
-            cursor: pointer;
-        }
+.form-control input[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+}
 
-        .form-control input[type="submit"]:hover {
-            background-color: #004494;
+.form-control input[type="submit"]:hover {
+    background-color: #004494;
         }
 </style>

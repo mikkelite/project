@@ -40,7 +40,8 @@ export default{
                 email:"",
                 password:"",
                 role:"User"
-            }
+            },
+            message: ""
         }
     },
     methods:{
@@ -64,6 +65,7 @@ export default{
                 })
                 .catch(error => {
                     console.log(error.response.data);
+                    this.message = error.reponse.data;
                 })
         }
        
