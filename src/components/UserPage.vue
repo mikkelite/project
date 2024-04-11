@@ -1,6 +1,6 @@
 <template>
 <body>
-    <form class="signup-form" action="/signup" method="post">
+    <form class="signup-form">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" v-model="userRegisterRequest.fName" required>
@@ -45,21 +45,21 @@ export default{
     },
     methods:{
     validateEmail(email) {
-        const re = /^[\w.+_-]+@[a-zA-Z-0-9.]+\.[a-zA-Z]{2,}$/;
+        const re = /^[\w.+_-]+@[a-zA-Z-0-9.]+\.[a-zA-Z]{2,}$/;//regex for email 
         return re.test(email);
     },
     CheckIfNumerical(field){
         return isNaN(field) && typeof field !== 'boolean';
     },
     createUser(event){
-            if (this.validateEmail(this.email)){  
+            if (this.validateEmail(this.email) && this.validateEmail(this.lName) && this.validateEmail(this.fName)){  
                 event.preventDefault();
                 RegisterService.createUser(this.userRegisterRequest)
                 .then(response => {
                     let user = response.data;
                     console.log(user);
                     this.message = user;
-                    this.$router.push({name: "UserLogin"})
+                    this.$router.push({name: "MainPage"})
                 })
                 .catch(error => {
                     console.log(error.response.data);
