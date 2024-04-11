@@ -4,15 +4,17 @@
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" v-model="userRegisterRequest.fName" required>
+            <p v-if="!CheckIfNumerical(userRegisterRequest.fName)">Please enter a valid name.</p>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" name="lastName" v-model="userRegisterRequest.lName" required>
+            <p v-if="!CheckIfNumerical(userRegisterRequest.lName)">Please enter a valid name.</p>
         </div>
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" v-model="userRegisterRequest.email" required>
-            <p v-if="!validateEmail(email)">Please enter a valid email address.</p>
+            <p v-if="!validateEmail(userRegisterRequest.email)">Please enter a valid email address.</p>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -45,6 +47,9 @@ export default{
     validateEmail(email) {
         const re = /^[\w.+_-]+@[a-zA-Z-0-9.]+\.[a-zA-Z]{2,}$/;
         return re.test(email);
+    },
+    CheckIfNumerical(field){
+        return isNaN(field) && typeof field !== 'boolean';
     },
     createUser(event){
             if (this.validateEmail(this.email)){  
