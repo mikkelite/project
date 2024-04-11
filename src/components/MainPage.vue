@@ -27,7 +27,7 @@
        
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
-        <button  @click="deleteProduct(product)" class="delete-button">Delete</button>
+        <button v-if="user.role==='Admin'" @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
   </div>
@@ -37,6 +37,7 @@
 <script>
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
+import UserDataService from '@/services/UserDataService';
 
 
 
@@ -46,7 +47,8 @@ export default {
 
   data() {
     return {
-      products: [],  
+      products: [],
+      user:null,  
       imageSource:"",  
       filterDescription: '',
       filterName: '',
@@ -65,6 +67,21 @@ export default {
         console.error('Error fetching products:', error);
       }
     },
+    async retrieveUserInfo(){
+      const id = localStorage.getItem('uid');
+      console.log("UID: " + id);
+    
+      await UserDataService.get(id)
+            .then(response => {
+                this.user = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+          
+        console.log(this.user)
+        
+    }, 
     //
     async deleteProduct(product) {
       const confirmation = confirm(
@@ -85,7 +102,9 @@ export default {
     renderReviews(productId){
       this.showReviews=true
       this.productId=productId
-    }
+    },   
+ 
+
   },
   computed: {
     filterProducts() {
@@ -114,7 +133,9 @@ export default {
   },
 
   mounted() {
+    this.retrieveUserInfo();
     this.fetchProducts();
+    
   },
 };//
 </script>
