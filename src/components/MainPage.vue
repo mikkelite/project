@@ -5,14 +5,16 @@
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
-      <br />
-      <a href="http://localhost:8081/AccountCreation" class="signup-link">Sign up</a>
-      <a href="http://localhost:8081/AddProductPage" class="add-product-link">Add a Product?</a>
+      <a href="http://localhost:8081/AccountCreation">Sign up</a>
+      <a href="http://localhost:8081/login">Sign In</a>
+   
+         
     </div>
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
-          <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div>
+          <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
+          <img :src="product.imageSrc"/>                       
           <div id="Reviews">
             <button @click="renderReviews(product.id)" class="reviews-button">Reviews: {{ product.reviews.length }}</button>
           </div>
@@ -21,17 +23,20 @@
        Price: {{ product.price }} <br />
         {{ product.descriptionString }} <br />
        rating: {{ product.rating }} /5
+       
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
         <button  @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
   </div>
+  
 </template>
 
 <script>
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
+
 
 
 export default {
@@ -40,7 +45,8 @@ export default {
 
   data() {
     return {
-      products: [],
+      products: [],  
+      imageSource:"",  
       filterDescription: '',
       filterName: '',
       showReviews:false,
@@ -48,6 +54,7 @@ export default {
     };
   },
   methods: {
+  
     async fetchProducts() {
       try {
         const response = await ProductService.load();
