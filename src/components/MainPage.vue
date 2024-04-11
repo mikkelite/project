@@ -7,11 +7,14 @@
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
       <a href="http://localhost:8081/login">Sign In</a>
+   
+         
     </div>
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
-          <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div>
+          <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
+          <img :src="product.imageSrc"/>                       
           <div id="Reviews">
             <button @click="renderReviews(product.id)">Reviews: {{ product.reviews.length }}</button>
           </div>
@@ -20,6 +23,7 @@
        Price: {{ product.price }} <br />
         {{ product.descriptionString }} <br />
        rating: {{ product.rating }} /5
+       
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
 
         <button  @click="deleteProduct(product)">Delete</button>
@@ -27,11 +31,13 @@
     </ul>
     <a href="http://localhost:8081/AddProductPage">AddProductPage</a>
   </div>
+  
 </template>
 
 <script>
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
+
 
 
 export default {
@@ -40,7 +46,8 @@ export default {
 
   data() {
     return {
-      products: [],
+      products: [],  
+      imageSource:"",  
       filterDescription: '',
       filterName: '',
       showReviews:false,
@@ -48,6 +55,7 @@ export default {
     };
   },
   methods: {
+  
     async fetchProducts() {
       try {
         const response = await ProductService.load();
