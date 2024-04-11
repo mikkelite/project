@@ -53,7 +53,7 @@ body {
 #AddProduct{ 
   border: 1px solid #ddd; 
   border-radius: 5px;
-  padding: 10%;
+  padding:15%;
   display: block; 
   background-color: white;
 }
@@ -66,11 +66,7 @@ p{
     padding:10px
 }
 form {
-  display: flex;
   flex-direction: column;
-  border: 1px solid #ddd; 
-  border-radius: 5px;
-  padding: 10%;
   display: block; 
   background-color: white;
 }

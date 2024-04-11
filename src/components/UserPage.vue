@@ -1,6 +1,7 @@
 <template>
 <body>
     <form class="signup-form">
+        <h2>Enter your credentials:</h2>
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" v-model="userRegisterRequest.fName" required>
@@ -81,6 +82,11 @@ body, html {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        p{
+            font-size: 12px;
+            font-style: italic;
+        
         }
 
         .signup-form {
