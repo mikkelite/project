@@ -6,7 +6,8 @@
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
-      <a href="http://localhost:8081/login">Sign In</a>     
+      <a href="http://localhost:8081/login">Sign In</a>    
+      <a href="http://localhost:8081/logout" ></a>
   
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
@@ -26,10 +27,12 @@
        rating: {{ product.rating }} /5
        
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
-
         <button v-if="user.role==='Admin'" @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
+    <div class="logout">
+       <button class="logout-button" to="/login" @click="logout">Logout </button>
+    </div>
   </div>
   
 </template>
@@ -48,7 +51,7 @@ export default {
   data() {
     return {
       products: [],
-      user:null,  
+      user:{id:-1,fNmae:'',lName:'',email:'',password:'',role:''},  
       imageSource:"",  
       filterDescription: '',
       filterName: '',
@@ -57,6 +60,9 @@ export default {
     };
   },
   methods: {
+    logout(){         
+            localStorage.removeItem('uid');
+     },
   
     async fetchProducts() {
       try {
@@ -70,16 +76,18 @@ export default {
     async retrieveUserInfo(){
       const id = localStorage.getItem('uid');
       console.log("UID: " + id);
-    
-      await UserDataService.get(id)
-            .then(response => {
-                this.user = response.data;
-            })
-            .catch(error => {
-                console.log(error);
-            })
-          
-        console.log(this.user)
+      
+      if(id!==null){
+        await UserDataService.get(id)
+              .then(response => {
+                  this.user = response.data;
+              })
+              .catch(error => {
+                  console.log(error);
+              })
+            
+          console.log(this.user)
+        }
         
     }, 
     //
@@ -133,6 +141,7 @@ export default {
   },
 
   mounted() {
+    
     this.retrieveUserInfo();
     this.fetchProducts();
     

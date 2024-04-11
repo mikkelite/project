@@ -33,8 +33,7 @@ export default {
 
     methods: {
         // event handler to remove uid from local storage and simulate the logout feature.
-        logout(event){
-            event.preventDefault();
+        logout(){         
             localStorage.removeItem('uid');
         },
 
