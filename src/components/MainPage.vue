@@ -6,6 +6,7 @@
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
+      <a href="http://localhost:8081/login">Sign In</a>
     </div>
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
