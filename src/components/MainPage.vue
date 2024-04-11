@@ -1,26 +1,27 @@
 <template>
   <div id="Main">
-    <div class="filter-area">
+    
       <p>Enter description of product</p>
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
-      <a href="http://localhost:8081/login">Sign In</a>
-   
-         
-    </div>
+      <a href="http://localhost:8081/login">Sign In</a>     
+  
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
-          <img :src="product.imageSrc"/>                       
+          <div class="image-container">
+            <img :src="product.imageSrc"/>  
+          </div>
+                               
           <div id="Reviews">
             <button @click="renderReviews(product.id)" class="reviews-button">Reviews: {{ product.reviews.length }}</button>
           </div>
         </div>
         <br />
-       Price: {{ product.price }} <br />
+       Price: {{ product.price }} $ <br />
         {{ product.descriptionString }} <br />
        rating: {{ product.rating }} /5
        
@@ -115,13 +116,25 @@ export default {
   mounted() {
     this.fetchProducts();
   },
-};
+};//
 </script>
 
 <style>
+.image-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  height: 100px;
+}
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
+  margin: auto;
+  padding: 0;
+ 
 }
 p .reviews{
   display: block;
@@ -129,6 +142,7 @@ p .reviews{
   padding: 10px;
   border: 1px solid #1b70c5;
   border-radius: 5px;
+  
 }
 p {
   display: inline-flex;
@@ -145,6 +159,7 @@ ul {
   list-style: none;
   padding: 13px 12px 10px 50px ;
   margin: 0;
+  overflow: hidden;
 }
 
 .products {
@@ -154,7 +169,7 @@ ul {
   border: 1px solid ;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143))
+  background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143));
 }
 
 li a {
@@ -175,20 +190,17 @@ button {
 .name-section {
   display: flex;
 }
-.filter-area {
-  width: 50%;
-  margin: auto;
-  padding: 8px 8px 2px 8px;
-  
-}
+
 #Main{ 
   border: 1px solid #ddd; 
   border-radius: 5px;
-  padding: 5%;
-  display: block; 
+
   background-color: white;
 }
-
+.filter-area {
+    height: auto;
+    margin-top: auto;
+}
 #NameProduct{
   background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));
   border:3px #73a2d1;
