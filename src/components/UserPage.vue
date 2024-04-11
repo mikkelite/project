@@ -52,8 +52,8 @@ export default{
         return isNaN(field) && typeof field !== 'boolean';
     },
     createUser(event){
-            if (this.validateEmail(this.email) && this.validateEmail(this.lName) && this.validateEmail(this.fName)){  
-                event.preventDefault();
+            if (this.validateEmail(this.email) && this.CheckIfNumerical(this.lName) && this.CheckIfNumerical(this.fName)){  
+                event.preventDefault();         
                 RegisterService.createUser(this.userRegisterRequest)
                 .then(response => {
                     let user = response.data;
