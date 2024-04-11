@@ -2,8 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import MainPage from "@/components/MainPage.vue";
 import AddProductPage from "@/components/AddProductPage.vue";
 import ProductReview from "@/components/ProductReview.vue";
-import UserPage from "@/components/UserPage.vue";
+import UserRegister from "@/components/UserRegister.vue";
 import UserLogin from '../components/UserLogin.vue';
+import UserProfile from "@/components/UserProfile.vue";
 
 const routes = [
   {
@@ -24,12 +25,17 @@ const routes = [
   {
     path: "/AccountCreation",
     name: "AccountCreation",
-    component: UserPage,
+    component: UserRegister,
   },
   {
     path: "/login",
     name: "UserLogin",
     component: UserLogin
+  },
+  {
+    path: "/profile",
+    name: "userProfile",
+    component: UserProfile
   }
 ];
 
