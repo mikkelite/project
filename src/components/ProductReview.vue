@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-v-for-key -->
 <template>
   <div>
-    <h2>Product Reviews</h2>
+    <h1>Product Reviews</h1>
 
       <ul v-for="review in reviews">
         <p style="font-size: larger;">- -</p><li class="reviews">{{ review }}</li>
@@ -35,12 +35,10 @@ export default {
 };
 </script>
 <style>
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
 }
-
 .reviews{
   display: block;
   margin: 10px;
