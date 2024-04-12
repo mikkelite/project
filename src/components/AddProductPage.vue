@@ -61,14 +61,22 @@ body {
   padding:15%;
   display: block; 
   background-color: white;
+  text-align: center;
 }
 h2 {
   text-align: center;
-
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:#003f83a7;
 }
 p{
-    display: inline-flex;
-    padding:10px
+
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size:x-large;
+  font-style: italic,bold;
+  color: #0056b3;
+  padding: 10px;
+  padding-right: 20px;
+
 }
 form {
   flex-direction: column;
@@ -82,11 +90,12 @@ label {
 }
 
 input{
+  width: 100%;
     display: inline-block;
     margin: auto;
     box-sizing: border-box;
     margin: 10px;
-    text-align: center;
+    
 }
 
 ul {
@@ -116,11 +125,13 @@ li a:hover {
 
 
 li:hover {
-  background-color: #eee; 
+  background-color: #c4c2c2; 
 }
 .button {
+  margin: 10,20;
+  text-align: center;
   display: inline-block;
-  margin: 10px;
+  
   padding: 10px 20px;
   background-color: #4d80b4;
   color: white;

@@ -5,8 +5,14 @@ import ProductReview from "@/components/ProductReview.vue";
 import UserRegister from "@/components/UserRegister.vue";
 import UserLogin from '../components/UserLogin.vue';
 import UserProfile from "@/components/UserProfile.vue";
+import NavBar from "@/components/NavBar.vue";
 
 const routes = [
+  {
+    path: "/Navbar",
+    name: "NavBar",
+    component: NavBar,
+  },
   {
     path: "/",
     name: "MainPage",

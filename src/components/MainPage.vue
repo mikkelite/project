@@ -1,4 +1,9 @@
 <template>
+ <div>
+    <NavBar />
+    <router-link to="/AccountCreation" class="nav-button">Sign up</router-link>
+    
+ </div>
   <div id="Main">
     
       <p>Enter description of product</p>
@@ -24,7 +29,7 @@
         <br />
        Price: {{ product.price }} $ <br />
         {{ product.descriptionString }} <br />
-       rating: {{ product.rating }} /5
+       Rating: {{ product.rating }} /5
        
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
         <button v-if="user.role==='Admin'" @click="deleteProduct(product)" class="delete-button">Delete</button>
@@ -35,18 +40,21 @@
     </div>
   </div>
   
+  
 </template>
 
 <script>
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
-import UserDataService from '@/services/UserDataService';
+import NavBar from './NavBar.vue';
+
 
 
 
 export default {
   name: 'ProductDisplayed',
-  components:{ProductReview},
+  components:{ProductReview,NavBar},
+ 
 
   data() {
     return {
@@ -163,11 +171,38 @@ img{
 }
 body {
   font-family: Arial, sans-serif;
-  margin: auto;
+  margin: 0;
   padding: 0;
- 
 }
-p .reviews{
+.filter-area {
+  width: auto; 
+  margin-top: 5%;
+  padding: 2%;
+  position: fixed;
+}
+ 
+div.products {
+  -webkit-margin-top-collapse:collapse
+}
+#Main{ 
+
+  width: fit-content;
+  margin-top: 17%;
+  box-sizing: content-box;
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  padding: 5%;
+  display: block; 
+  background-color: white;
+}
+
+div {
+  box-sizing: content-box;
+}
+ 
+
+.reviews{
+  background-color: white;
   display: block;
   margin: 10px;
   padding: 10px;
@@ -176,8 +211,13 @@ p .reviews{
   
 }
 p {
-  display: inline-flex;
-  padding: 10px;
+    display: inline-flex;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:x-large;
+    font-style: italic,bold;
+    color: #0056b3;
+    padding: 10px;
+    padding-right: 20px;
 }
 input {
   display: inline-block;
@@ -185,20 +225,37 @@ input {
   box-sizing: border-box;
 }
 ul {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
-  padding: 13px 12px 10px 50px ;
+  list-style:none;
+  padding: 5% ;
   margin: 0;
-  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+
+#showProducts {
+  float:inline-start;
+  display: block;
+  box-sizing: content-box;
+  width: fit-content; 
+  margin-top: 5%;
+  position: fixed;
+  margin-top: 5%;
+  background-color: aliceblue;
+  padding: 10px;
 }
 
 .products {
-  display: block ;
+  display:inherit;
+  width: 80%;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid ;
   border-radius: 5px;
+  background-color:#648bb4bf;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143));
 }
@@ -218,6 +275,10 @@ li:hover {
 button {
   margin: 10px;
 }
+
+button:hover {
+  background-color: #3a7ca5; 
+}
 .name-section {
   display: flex;
 }
@@ -234,7 +295,11 @@ button {
     position: absolute;
 }
 #NameProduct{
-  background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));
+  font-family:  'Arial Narrow Bold', sans-serif;
+  font-size:large;
+  color:white;
+  width: 80%;
+  background: linear-gradient(#84a8cc 70%, rgb(80, 112, 170));
   border:3px #73a2d1;
   padding: 3px;
   border-style:ridge;
@@ -262,5 +327,14 @@ a {
 
   background-color: #4d80b4;
 
+}
+button,
+a {
+  outline: none; 
+}
+
+button:focus,
+a:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); 
 }
 </style>
