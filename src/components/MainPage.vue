@@ -231,7 +231,7 @@ button {
 .filter-area {
     height: auto;
     margin-top: auto;
-    position: relative;
+    position: absolute;
 }
 #NameProduct{
   background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));

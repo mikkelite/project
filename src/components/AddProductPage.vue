@@ -37,13 +37,15 @@ data(){
         rating : 0,
         specificationString : "",
         reviews : [],
-        url:''
-        }
+        ImageSrc:'',
+        },
     }
 },
 methods:{
-    PostProduct(){
+    PostProduct(event){     
+        event.preventDefault(); 
         ProductService.NewProduct(this.newProduct)
+        console.log(this.newProduct)
     }
 }
 }
