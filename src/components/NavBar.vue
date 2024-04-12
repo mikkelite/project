@@ -3,7 +3,7 @@
     <p><img id="logo" src="logo.png" alt="logo">Auto Parts Finder</p>
       <router-link to="/profile" class="nav-button">Account Details</router-link>
       <router-link to="/" class="nav-button">Home Page</router-link>
-      <router-link to="/AddProductPage" class="nav-button">Add Products</router-link>
+      
     </div>
   </template>
   
