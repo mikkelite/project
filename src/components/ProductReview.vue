@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-v-for-key -->
 <template>
   <div>
-    <h1>Product Reviews</h1>
+    <h1 id="review">Product Reviews</h1>
 
       <ul v-for="review in reviews">
         <p style="font-size: larger;">- -</p><li class="reviews">{{ review }}</li>
@@ -39,6 +39,13 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
 }
+#review{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: large;
+  text-align: center;
+  color: #1b70c5;
+}
 .reviews{
   display: block;
   margin: 10px;
@@ -59,6 +66,7 @@ ul {
 }
 
 li {
+  width: 80%;
   display: block !important;
   padding: 10px;
   border: 1px solid #1b70c5 !important;

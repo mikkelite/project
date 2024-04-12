@@ -1,4 +1,8 @@
 <template>
+  <div>
+
+    <NavBar />
+  </div>
   <div id="AddProduct">
     <form>
       <h2>Enter Product Details:</h2>
@@ -11,13 +15,13 @@
         <label>Stock Available</label>
         <input type="number" v-model="newProduct.NumberInStock" required>
         <br />
-        <label>Description of the product</label>
+        <label>Description</label>
         <input type="text" v-model="newProduct.descriptionString" required>
         <br />
-        <label>Specifications of the product</label> 
+        <label>Any Specifications?</label> 
         <input type="text" v-model="newProduct.specificationString" required>
         <br />
-        <label>url for image</label> 
+        <label>URL for the Image</label> 
         <input type="text" v-model="newProduct.url" required>
         <button @click="PostProduct" type="submit" class="button">Submit Product</button>
     </form>
@@ -25,8 +29,10 @@
 </template>
 <script>
 import ProductService from '@/services/ProductService';
+import NavBar from './NavBar.vue';
 export default {
 name:"AddProductPage",
+components: {NavBar},
 data(){
     return{
     newProduct:{
@@ -38,7 +44,7 @@ data(){
         specificationString : "",
         reviews : [],
         url:''
-        }
+        }, NavBar
     }
 },
 methods:{
@@ -56,7 +62,7 @@ body {
 #AddProduct{ 
   border: 1px solid #ddd; 
   border-radius: 5px;
-  padding:15%;
+  padding:5%;
   display: block; 
   background-color: white;
 }
@@ -69,6 +75,7 @@ p{
     padding:10px
 }
 form {
+  text-align: center;
   flex-direction: column;
   display: block; 
   background-color: white;

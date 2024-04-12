@@ -51,16 +51,21 @@ export default {
     body {
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 20px;
+        padding: 1%;
         background-color: #f4f4f4;
         height: auto;
         width: auto;
+    }
+    h2 {
+        font-size: small;
+        padding: 0%;
+        margin: 0;
     }
     .user-info {
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 5px;
-        padding: 20px;
+        padding: 5%;
         max-width: 400px;
         margin: 10px auto;
     }
@@ -69,7 +74,7 @@ export default {
         font-size: 24px;
     }
     .user-detail {
-        margin-top: 10px;
+        margin-top: 1px;
         font-size: 16px;
     }
     .user-detail span {

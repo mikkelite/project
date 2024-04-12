@@ -1,13 +1,19 @@
 <template>
+  <div>
+    <NavBar />
+  </div>
   <div id="Main">
     
       <p>Enter description of product</p>
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
-      <a href="http://localhost:8081/AccountCreation">Sign up</a>
-      <a href="http://localhost:8081/login">Sign In</a>    
-  
+      
+      <router-link class="signup-button" to="/AccountCreation">Sign Up</router-link>
+      <router-link class="signin-button" to="/login" >Sign In</router-link>
+      
+      <button class="logout-button" to="/login" @click="logout">Logout</button>
+    
   
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
@@ -30,9 +36,7 @@
         <button v-if="user.role==='Admin'" @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
-    <div class="logout">
-       <button class="logout-button" to="/login" @click="logout">Logout </button>
-    </div>
+   
   </div>
   
 </template>
@@ -41,12 +45,13 @@
 import ProductService from '@/services/ProductService';
 import ProductReview from './ProductReview.vue';
 import UserDataService from '@/services/UserDataService';
+import NavBar from './NavBar.vue';
 
 
 
 export default {
   name: 'ProductDisplayed',
-  components:{ProductReview},
+  components:{ProductReview,NavBar},
 
   data() {
     return {
@@ -56,7 +61,8 @@ export default {
       filterDescription: '',
       filterName: '',
       showReviews:false,
-      productId:0
+      productId:0,
+      NavBar
     };
   },
   methods: {
@@ -147,7 +153,7 @@ export default {
     this.fetchProducts();
     
   },
-};//
+};
 </script>
 
 <style>
@@ -158,8 +164,8 @@ export default {
 img{
   display: block;
   max-width: 100%;
-  height: auto;
-  height: 100px;
+  height: 60px;
+  
 }
 body {
   font-family: Arial, sans-serif;
@@ -185,12 +191,13 @@ input {
   box-sizing: border-box;
 }
 ul {
-  display: flex;
+  display: inline-block;
   flex-wrap: wrap;
   list-style: none;
-  padding: 13px 12px 10px 50px ;
+  padding: 0 ;
   margin: 0;
   overflow: hidden;
+
 }
 
 .products {
@@ -200,7 +207,7 @@ ul {
   border: 1px solid ;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143));
+  background-color: #80a0c072;
 }
 
 li a {
@@ -215,29 +222,31 @@ li a:hover {
 li:hover {
   background-color: #eee;
 }
-button {
-  margin: 10px;
-}
+
 .name-section {
   display: flex;
 }
 
 #Main{ 
+ padding: 10 20;
   border: 1px solid #ddd; 
   border-radius: 5px;
-
   background-color: white;
 }
 .filter-area {
     height: auto;
-    margin-top: auto;
+    margin-top: 1px;
     position: relative;
 }
 #NameProduct{
+  width: 50%;
+  text-align: justify;
   background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));
   border:3px #73a2d1;
   padding: 3px;
   border-style:ridge;
+  color: white;
+  font-weight: 600;
 }
 
 a {
@@ -263,4 +272,22 @@ a {
   background-color: #4d80b4;
 
 }
+
+.signin-button, .signup-button, .logout-button {
+       
+       display: inline-block;
+       margin: 10px;
+       padding: 10px 20px;
+       background-color: #4d80b4;
+       color: white;
+       text-decoration: none;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+   }
+   .signin-button:hover ,  .signup-button:hover, .logout-button:hover{
+       background-color: #0056b3;
+   }
 </style>

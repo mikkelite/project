@@ -5,17 +5,17 @@
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" v-model="userRegisterRequest.fName" required>
-            <p v-if="!CheckIfNumerical(userRegisterRequest.fName)">Please enter a valid name.</p>
+            <p class="verify" v-if="!CheckIfNumerical(userRegisterRequest.fName)">Please enter a valid name.</p>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" name="lastName" v-model="userRegisterRequest.lName" required>
-            <p v-if="!CheckIfNumerical(userRegisterRequest.lName)">Please enter a valid name.</p>
+            <p class="verify" v-if="!CheckIfNumerical(userRegisterRequest.lName)">Please enter a valid name.</p>
         </div>
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" v-model="userRegisterRequest.email" required>
-            <p v-if="!validateEmail(userRegisterRequest.email)">Please enter a valid email address.</p>
+            <p class="verify" v-if="!validateEmail(userRegisterRequest.email)">Please enter a valid email address.</p>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -85,10 +85,12 @@ body, html {
             justify-content: center;
             align-items: center;
         }
-        p{
+        .verify{
+            color: #0056b3;
             font-size: 12px;
             font-style: italic;
-        
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0;
         }
 
         .signup-form {

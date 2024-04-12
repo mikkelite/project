@@ -1,35 +1,35 @@
 <template>
     <div id="navbar">
-    <p><img src="logo.png" alt="logo">Auto Parts Finder</p>
-      <router-link to="/profile" class="nav-button">Profile</router-link>
+    <p><img id="logo" src="logo.png" alt="logo">Auto Parts Finder</p>
+      <router-link to="/profile" class="nav-button">Account Details</router-link>
       <router-link to="/" class="nav-button">Home Page</router-link>
       <router-link to="/AddProductPage" class="nav-button">Add Products</router-link>
-      <router-link to="/accountDetails" class="nav-button">Account Details</router-link>
     </div>
   </template>
   
   <script>
   export default {
     name: 'NavBar'
+    
   }
   </script>
   
   <style>
   p{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size:x-large;
+    font-size:medium;
     font-style: italic,bold;
     color: #0056b3;
-    padding: 10px;
-    padding-right: 20px;
+    padding: 0px;
+    
   }
-  img{
+  #logo{
     width: 50px;
-    height: auto;
+    height: 50px;
   }
   #navbar {
     background-color: white;
-    padding: 10px;
+    padding: 0px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -39,8 +39,7 @@
   .nav-button {
     color: black;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    
+    padding: 2px;
     text-decoration:solid;
     margin-right: 20px;
   }

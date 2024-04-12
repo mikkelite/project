@@ -56,21 +56,26 @@ export default{
 <style>
 body {
     font-family: Arial, sans-serif;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 40%;
+    margin: auto;
+    border-radius: 2%;
+    width: 100%;
+
 }
 
 .login-form {
     background-color: #fff;
-    padding: 20px;
+
+    padding: 25%;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-control {
-    margin-bottom: 20px;
+    display: inline;
 }
 
 .form-control label {
@@ -80,7 +85,7 @@ body {
 
 .form-control input {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
