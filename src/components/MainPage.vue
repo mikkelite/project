@@ -7,7 +7,7 @@
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
       <a href="http://localhost:8081/login">Sign In</a>    
-      <a href="http://localhost:8081/logout" ></a>
+  
   
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
@@ -61,7 +61,8 @@ export default {
   },
   methods: {
     logout(){         
-            localStorage.removeItem('uid');
+        localStorage.removeItem('uid');
+        window.location.reload();
      },
   
     async fetchProducts() {
