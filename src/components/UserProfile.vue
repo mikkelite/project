@@ -80,8 +80,8 @@ export default {
         color: #fff;
         padding: 1px;
         text-align: center;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-size: small;
+        font-family:  Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: x-small;
     }
     
 
