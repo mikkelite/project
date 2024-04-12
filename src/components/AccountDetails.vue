@@ -4,39 +4,45 @@
     <div class="user-detail"><span v-if="user">Name: {{ user.fName}} {{ user.lName }} </span></div>
     <div class="user-detail"><span v-if="user">Email: {{ user.email }} </span></div>
     <div class="user-detail"><span v-if="user">Role: {{ user.role }}</span> </div>
+    <AddProductPage v-if="user.role==='Admin'"></AddProductPage>
 </div>
 
 </template>
 
 <script>
 import UserDataService from '@/services/UserDataService';
+import AddProductPage from './AddProductPage.vue';
 export default {
     name: "accountDetails",
+    components:{AddProductPage},
 
     data(){
         return {
             uid: 0,
             title: "User Information",
-            user: null,
+            user: {id:-1,fNmae:'',lName:'',email:'',password:'',role:''},
         }
     },
 
     methods: {
-        retrieveUserInfo(){
+        async retrieveUserInfo(){
         const id = localStorage.getItem('uid');
             console.log("UID: " + id);
-            UserDataService.get(id)
+            await UserDataService.get(id)
                 .then(response => {
                     this.user = response.data;
                 })
                 .catch(error => {
                     console.log(error);
                 })
+         console.log(this.user)
         }
+      
     },
 
     mounted(){
         this.retrieveUserInfo();
+        
     },
 }
 </script>

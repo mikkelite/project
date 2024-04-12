@@ -2,6 +2,7 @@
     <div>
         <div class="logout">
             <router-link class="logout-button" to="/login" @click="logout">Logout </router-link>
+            <router-link class="logout-button" to="/" >Home </router-link>
         </div>
         <!-- Only loads user name if it exists -->
         <div class="header">
@@ -33,9 +34,11 @@ export default {
 
     methods: {
         // event handler to remove uid from local storage and simulate the logout feature.
-        logout(event){
-            event.preventDefault();
+        logout(){         
             localStorage.removeItem('uid');
+            this.$router.push({name: "MainPage"})
+            
+            
         },
 
         retrieveUser(){

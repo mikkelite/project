@@ -5,37 +5,41 @@
     
  </div>
   <div id="Main">
-    <div class="filter-area">
+    
       <p>Enter description of product</p>
       <input type="text" id="description" v-model="filterDescription" />
       <p>Enter name of product</p>
       <input type="text" id="name" v-model="filterName" />
       <a href="http://localhost:8081/AccountCreation">Sign up</a>
-      <a href="http://localhost:8081/login">Sign In</a>
-    </div>
-
-  <div class="showProducts">
+      <a href="http://localhost:8081/login">Sign In</a>    
+  
+  
     <ul v-if="products.length">
       <li class="products" v-for="product in filterProducts" :key="product.id">
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
-          <img :src="product.imageSrc"/>                       
+          <div class="image-container">
+            <img :src="product.imageSrc" alt="/assets/favicon.ico"/>  
+          </div>
+                               
           <div id="Reviews">
             <button @click="renderReviews(product.id)" class="reviews-button">Reviews: {{ product.reviews.length }}</button>
           </div>
         </div>
         <br />
-       Price: ${{ product.price }} <br />
+       Price: {{ product.price }} $ <br />
         {{ product.descriptionString }} <br />
        Rating: {{ product.rating }} /5
        
         <ProductReview v-if="showReviews && this.productId===product.id" :ReviewId="product.id"/>
-
-        <button  @click="deleteProduct(product)" class="delete-button">Delete</button>
+        <button v-if="user.role==='Admin'" @click="deleteProduct(product)" class="delete-button">Delete</button>
       </li>
     </ul>
+    <div class="logout">
+       <button class="logout-button" to="/login" @click="logout">Logout </button>
+    </div>
   </div>
-  </div>
+  
   
 </template>
 
@@ -54,7 +58,8 @@ export default {
 
   data() {
     return {
-      products: [],  
+      products: [],
+      user:{id:-1,fNmae:'',lName:'',email:'',password:'',role:''},  
       imageSource:"",  
       filterDescription: '',
       filterName: '',
@@ -63,6 +68,10 @@ export default {
     };
   },
   methods: {
+    logout(){         
+        localStorage.removeItem('uid');
+        window.location.reload();
+     },
   
     async fetchProducts() {
       try {
@@ -73,6 +82,23 @@ export default {
         console.error('Error fetching products:', error);
       }
     },
+    async retrieveUserInfo(){
+      const id = localStorage.getItem('uid');
+      console.log("UID: " + id);
+      
+      if(id!==null){
+        await UserDataService.get(id)
+              .then(response => {
+                  this.user = response.data;
+              })
+              .catch(error => {
+                  console.log(error);
+              })
+            
+          console.log(this.user)
+        }
+        
+    }, 
     //
     async deleteProduct(product) {
       const confirmation = confirm(
@@ -93,7 +119,9 @@ export default {
     renderReviews(productId){
       this.showReviews=true
       this.productId=productId
-    }
+    },   
+ 
+
   },
   computed: {
     filterProducts() {
@@ -122,12 +150,25 @@ export default {
   },
 
   mounted() {
+    
+    this.retrieveUserInfo();
     this.fetchProducts();
+    
   },
-};
+};//
 </script>
 
 <style>
+.image-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  height: 100px;
+}
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -167,6 +208,7 @@ div {
   padding: 10px;
   border: 1px solid #1b70c5;
   border-radius: 5px;
+  
 }
 p {
     display: inline-flex;
@@ -215,7 +257,7 @@ ul {
   border-radius: 5px;
   background-color:#648bb4bf;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  
+  background-image: radial-gradient( farthest-corner at 40px 40px,#4d80b4 10%, transparent 90%, rgb(73, 68, 143));
 }
 
 li a {
@@ -240,7 +282,6 @@ button:hover {
 .name-section {
   display: flex;
 }
-
 
 #NameProduct{
   font-family:  'Arial Narrow Bold', sans-serif;
