@@ -17,6 +17,8 @@
         <label>Specifications of the product</label> 
         <input type="text" v-model="newProduct.specificationString" required>
         <br />
+        <label>url for image</label> 
+        <input type="text" v-model="newProduct.specificationString" required>
         <button @click="PostProduct" type="submit" class="button">Submit Product</button>
     </form>
   </div>
@@ -35,6 +37,7 @@ data(){
         rating : 0,
         specificationString : "",
         reviews : [],
+        url:''
         }
     }
 },
