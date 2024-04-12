@@ -18,7 +18,7 @@
         <input type="text" v-model="newProduct.specificationString" required>
         <br />
         <label>url for image</label> 
-        <input type="text" v-model="newProduct.specificationString" required>
+        <input type="text" v-model="newProduct.url" required>
         <button @click="PostProduct" type="submit" class="button">Submit Product</button>
     </form>
   </div>

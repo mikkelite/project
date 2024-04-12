@@ -14,7 +14,7 @@
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
           <div class="image-container">
-            <img :src="product.imageSrc"/>  
+            <img :src="product.imageSrc" alt="/assets/favicon.ico"/>  
           </div>
                                
           <div id="Reviews">
@@ -231,6 +231,7 @@ button {
 .filter-area {
     height: auto;
     margin-top: auto;
+    position: relative;
 }
 #NameProduct{
   background: linear-gradient(#4d80b4 70%, rgb(80, 112, 170));
