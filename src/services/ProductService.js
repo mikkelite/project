@@ -1,11 +1,11 @@
-import http from '../HttpRequests';
+import http from "../HttpRequests";
 
 class ProductService {
   load() {
-    return http.get('/products');
+    return http.get("/products");
   }
   NewProduct(product) {
-    return http.post('/products', product);
+    return http.post("/product", product);
   }
   deleteProduct(product) {
     return http.delete(`/products/${product.id}`);

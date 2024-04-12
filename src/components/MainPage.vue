@@ -14,7 +14,7 @@
         <div class="name-section">
           <div id="NameProduct">{{ product.nameString }} &nbsp;&nbsp;</div> 
           <div class="image-container">
-            <img :src="product.imageSrc" alt="/assets/favicon.ico"/>  
+            <img :src="product.link" />  
           </div>
                                
           <div id="Reviews">
@@ -73,6 +73,7 @@ export default {
       } catch (error) {
         console.error('Error fetching products:', error);
       }
+    
     },
     async retrieveUserInfo(){
       const id = localStorage.getItem('uid');

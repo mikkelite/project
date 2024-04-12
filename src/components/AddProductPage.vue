@@ -1,6 +1,6 @@
 <template>
   <div id="AddProduct">
-    <form>
+    
       <h2>Enter Product Details:</h2>
         <label>Name of the product</label>
         <input type="text" v-model="newProduct.nameString" required>
@@ -18,9 +18,9 @@
         <input type="text" v-model="newProduct.specificationString" required>
         <br />
         <label>url for image</label> 
-        <input type="text" v-model="newProduct.url" required>
+        <input type="text" v-model="newProduct.link" required>
         <button @click="PostProduct" type="submit" class="button">Submit Product</button>
-    </form>
+ 
   </div>
 </template>
 <script>
@@ -37,7 +37,7 @@ data(){
         rating : 0,
         specificationString : "",
         reviews : [],
-        url:''
+        link:''
         }
     }
 },
