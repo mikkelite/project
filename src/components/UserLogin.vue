@@ -30,9 +30,9 @@ export default{
     },
 
     methods: {
-        login(event){
+        async login(event){
             event.preventDefault();
-            LoginService.login(this.userLoginRequest)
+           await LoginService.login(this.userLoginRequest)
             .then(response => {
                 let user = response.data;
                 console.log(user);
